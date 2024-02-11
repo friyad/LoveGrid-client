@@ -1,7 +1,8 @@
 import Image from "next/image";
 import loginCover from "@/assets/images/login.jpg";
+import OtherAuthSection from "@/components/auth/OtherAuthSection";
 
-export default function AuthtLayout({
+export default async function AuthtLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -21,6 +22,7 @@ export default function AuthtLayout({
 
           <div className="md:col-span-2 max-w-md w-full p-6 sm:p-8 mx-auto bg-white rounded-xl border shadow-[0px_20px_40px_#00000010]">
             {children}
+            <OtherAuthSection />
           </div>
         </div>
       </div>

@@ -1,14 +1,18 @@
 "use client";
 
 import { LoginInfo } from "@/types/authTypes";
+import { failedNotify, successNotify } from "@/utils/notificationsManager";
 import { LogInValidation } from "@/validations/userValidation";
 import { Button, Checkbox, PasswordInput, TextInput } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import { Mail } from "lucide-react";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const LogInForm = () => {
+  const router = useRouter();
   const form = useForm<LoginInfo>({
     initialValues: {
       email: "",
@@ -17,8 +21,19 @@ const LogInForm = () => {
     validate: yupResolver(LogInValidation),
   });
 
-  const handleLoginSubmit = (data: LoginInfo) => {
-    console.log(data);
+  const handleLoginSubmit = async (data: LoginInfo) => {
+    const res = await signIn("login-provider", {
+      ...data,
+      redirect: false,
+      callbackUrl: "/",
+    });
+    if (res?.ok) {
+      successNotify("Successfull!", "Sign Up Successfull!");
+      router.push("/");
+    }
+    if (res?.error) {
+      failedNotify("Oops!", JSON.parse(res?.error || " "));
+    }
   };
 
   return (

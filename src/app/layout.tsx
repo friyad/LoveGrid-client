@@ -2,8 +2,11 @@ import type { Metadata } from "next";
 import { Inter, Days_One } from "next/font/google";
 import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import theme from "@/utils/mantineTheme";
+import ReduxProvider from "@/redux/ReduxProvider";
+import { Notifications } from "@mantine/notifications";
 
 import "@mantine/core/styles.css";
+import "@mantine/notifications/styles.css";
 import "./globals.css";
 
 const inter = Inter({
@@ -34,7 +37,12 @@ export default function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className={`${inter.variable} ${daysOne.variable}`}>
-        <MantineProvider theme={theme}>{children}</MantineProvider>
+        <ReduxProvider>
+          <MantineProvider theme={theme}>
+            <Notifications position="top-center" />
+            {children}
+          </MantineProvider>
+        </ReduxProvider>
       </body>
     </html>
   );
