@@ -23,3 +23,16 @@ export const api = createApi({
   },
   endpoints: () => ({}),
 });
+
+export const localAPI = createApi({
+  reducerPath: "localAPI",
+  baseQuery: fetchBaseQuery({
+    baseUrl: `http://localhost:3000`,
+  }),
+  extractRehydrationInfo(action, { reducerPath }): any {
+    if (isHydrateAction(action)) {
+      return action.payload[reducerPath];
+    }
+  },
+  endpoints: () => ({}),
+});

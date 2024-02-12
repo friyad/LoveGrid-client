@@ -9,9 +9,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { useDisclosure, useHeadroom, useWindowScroll } from "@mantine/hooks";
 import ProfileMenu from "./ProfileMenu";
 import HideComponentOn from "../HideComponentOn";
-import { dashboardSidebarItems } from "../dashboard/DashboardSidebar";
 import { signOut } from "next-auth/react";
 import { LogOut } from "lucide-react";
+import { dashboardSidebarItems } from "../Dashboard/DashboardSidebar";
 
 const navItems = [
   {

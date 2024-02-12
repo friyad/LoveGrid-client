@@ -1,4 +1,4 @@
-import ChartsSection from "@/components/dashboard/ChartsSection";
+import ChartsSection from "@/components/Dashboard/ChartsSection";
 import { Button } from "@mantine/core";
 import { Plus } from "lucide-react";
 import { Metadata } from "next";

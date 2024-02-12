@@ -1,7 +1,7 @@
+import Navbar from "@/components/Navbar/Navbar";
 import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 import React from "react";
-import Navbar from "./Navbar";
 
 // At first I was calling the getServerSession function from the root layout
 // and passing the data into Navbar. But, I noticed that it is preventing SSG feature

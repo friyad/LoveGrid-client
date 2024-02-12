@@ -5,7 +5,6 @@ import theme from "@/utils/mantineTheme";
 import ReduxProvider from "@/redux/ReduxProvider";
 import { Notifications } from "@mantine/notifications";
 import Footer from "@/components/Footer";
-import NavbarProvider from "@/components/navbar/NavbarProvider";
 
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -32,8 +31,10 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  navbar,
 }: Readonly<{
   children: React.ReactNode;
+  navbar: React.ReactNode;
 }>) {
   return (
     <html lang="en">
@@ -45,8 +46,7 @@ export default function RootLayout({
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />
             <main className="flex flex-col justify-between min-h-screen">
-              {/* @ts-expect-error Server Component */}
-              <NavbarProvider />
+              {navbar}
               {children}
               <Footer />
             </main>

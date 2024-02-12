@@ -1,5 +1,5 @@
 import React from "react";
-import CreateCampaignForm from "@/components/dashboard/CreateCampaignForm";
+import CreateCampaignForm from "@/components/Dashboard/CreateCampaignForm";
 import { Button } from "@mantine/core";
 import { MoveLeft } from "lucide-react";
 import { Metadata } from "next";

@@ -1,4 +1,4 @@
-import DashboardSidebar from "@/components/dashboard/DashboardSidebar";
+import DashboardSidebar from "@/components/Dashboard/DashboardSidebar";
 import { authOptions } from "@/utils/authOptions";
 import { getServerSession } from "next-auth";
 
