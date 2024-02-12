@@ -5,11 +5,11 @@ import { handleAuthErr } from "@/utils/errorResponses";
 export const authAPI = api.injectEndpoints({
   endpoints: (builder) => ({
     handleSignUp: builder.mutation({
-      query: (data: SignUpInfo) => ({
+      query: (data: SignUpInfo | any) => ({
         url: "/signup",
         body: data,
         method: "POST",
-        // cache: "no-cache",
+        cache: "no-cache",
       }),
       transformErrorResponse: handleAuthErr,
     }),

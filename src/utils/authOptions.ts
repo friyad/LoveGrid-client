@@ -46,12 +46,11 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials, req) {
-        console.log(credentials);
-
         try {
           const result: any = await store.dispatch(
             authAPI.endpoints.handleSignUp.initiate(credentials!)
           );
+
           if (result.error) {
             throw new Error(JSON.stringify(result?.error?.message));
           } else if (result?.data?.user) {

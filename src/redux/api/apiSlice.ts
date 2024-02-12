@@ -10,7 +10,7 @@ function isHydrateAction(action: Action): action is PayloadAction<RootState> {
 export const api = createApi({
   reducerPath: "api",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://lovegrid-server.vercel.app/api/v1",
+    baseUrl: "https://lovegrid-server.onrender.com/api/v1",
   }),
   // baseQuery: fetchBaseQuery({ baseUrl: "http://localhost:5000/api/v1" }),
   extractRehydrationInfo(action, { reducerPath }): any {

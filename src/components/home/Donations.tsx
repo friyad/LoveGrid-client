@@ -24,7 +24,7 @@ const Donations = () => {
 
         <div className="grid grid-cols-4 gap-12 mt-16">
           {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
-            return <DonationCard />;
+            return <DonationCard key={item} />;
           })}
         </div>
       </div>

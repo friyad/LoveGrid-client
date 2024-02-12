@@ -1,5 +1,5 @@
 export const handleAuthErr = (result: any) => {
-  console.log("From Error Handler: ", result);
+  // console.log("From Error Handler: ", result);
 
   if (result?.data?.message) {
     return {
