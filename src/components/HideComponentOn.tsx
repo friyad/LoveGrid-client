@@ -1,5 +1,6 @@
 "use client";
 
+import { isIncluded } from "@/utils/globalUtils";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
@@ -15,7 +16,7 @@ const HideComponentOn = ({
   const pathname = usePathname();
 
   // Hide component on these routes
-  if (hiddenOn.includes(pathname)) {
+  if (isIncluded(hiddenOn, pathname)) {
     return null;
   }
 

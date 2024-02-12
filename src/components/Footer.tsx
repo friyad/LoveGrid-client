@@ -5,7 +5,7 @@ interface FooterProps {}
 
 const Footer = ({}: FooterProps) => {
   return (
-    <HideComponentOn>
+    <HideComponentOn hiddenOn={["/login", "/signup", "/dashboard"]}>
       <footer className="bg-gray-900 font-inter">
         <div className="py-12 grid sm:grid-cols-2 xl:grid-cols-4 gap-8 max-w-screen-2xl mx-auto px-6 2xl:px-4">
           <div>
