@@ -16,6 +16,7 @@ import DonationDonors from "@/components/donationDetails/DonationDonors";
 import DonationUpdates from "@/components/donationDetails/DonationUpdates";
 import Countdown_timer from "@/components/ui/CountdownTimer";
 import { Timer } from "lucide-react";
+import DonateNowModal from "@/components/donationDetails/DonateNowModal";
 
 interface Props {
   params: { [key: string]: string };
@@ -78,9 +79,7 @@ const DonationDetailsPage = ({ params }: Props) => {
               </div>
             </div>
 
-            <Button fullWidth size="lg" className="mt-5 sm:mt-0">
-              Donate Now
-            </Button>
+            <DonateNowModal />
           </div>
         </div>
 
