@@ -1,12 +1,10 @@
 import React from "react";
 import ProfilePage from "./profile/page";
 
-const DashboardPage = () => {
-  return (
-    <div>
-      <ProfilePage />
-    </div>
-  );
+const DashboardPage = async () => {
+  const elements = await ProfilePage();
+
+  return <div>{elements}</div>;
 };
 
 export default DashboardPage;

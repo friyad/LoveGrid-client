@@ -44,7 +44,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
 
   const items = navItems.map((item) => {
     return (
-      <Link href={item.href} key={item.id} onClick={toggle}>
+      <Link href={item.href} key={item.id}>
         <li
           className={`block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none text-sm lg:text-base ${
             pathname === item.href ||
