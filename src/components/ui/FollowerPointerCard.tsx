@@ -25,7 +25,7 @@ export const FollowerPointerCard = ({
   useEffect(() => {
     horizontal.set(x);
     virticle.set(y);
-  }, [x, y]);
+  }, [x, y, horizontal, virticle]);
 
   const handleMouseLeave = () => {
     setIsInside(false);

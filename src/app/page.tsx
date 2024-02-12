@@ -25,7 +25,7 @@ export default async function Home() {
       <div className="bg-white py-20 md:py-24 2xl:py-32">
         <div className="max-w-2xl mx-auto text-center px-6 xl:px-4">
           <h1 className="relative after:absolute after:-bottom-5 after:h-1 after:w-1/2 after:bg-cusGreen after:left-0 after:right-0 after:mx-auto after:rounded-full">
-            We've got you covered.
+            We&apos;ve got you covered.
           </h1>
           <div className="mt-12">
             <p className="text-sm 2xl:text-base font-inter">

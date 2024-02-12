@@ -11,10 +11,11 @@ const Footer = ({}: FooterProps) => {
           <div>
             <h4 className="text-white text-lg font-bold mb-6">About Us</h4>
             <p className="text-gray-300 text-sm">
-              At LoveGrid, we're dedicated to revolutionizing the world of
-              online fundraising. Since our inception in 2020, we've empowered
-              countless individuals and organizations to raise millions in
-              donations, all with our trusted platform and expert support.
+              At LoveGrid, we&apos;re dedicated to revolutionizing the world of
+              online fundraising. Since our inception in 2020, we&apos;ve
+              empowered countless individuals and organizations to raise
+              millions in donations, all with our trusted platform and expert
+              support.
             </p>
             <ul className="space-y-4 mt-8">
               <li>

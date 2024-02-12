@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "LoveGrid is an interactive donation platform designed to foster acts of kindness and support within communities.",
 };
 
-const AboutUs = () => {
+export default function AboutUs() {
   return (
     <section className="py-24 relative">
       <div className="justify-center flex-1 max-w-screen-xl py-4 mx-auto lg:py-6 md:px-6">
@@ -48,11 +48,11 @@ const AboutUs = () => {
               </h1>
             </div>
             <p className="mb-6 text-sm 2xl:text-base font-inter leading-7 text-gray-600">
-              At LoveGrid, we're passionate about empowering individuals and
-              organizations to make a difference through online fundraising.
-              Since our establishment in 2020, we've been dedicated to providing
-              a platform that enables you to supercharge your fundraising
-              efforts and achieve unparalleled success.
+              At LoveGrid, we&apos;re passionate about empowering individuals
+              and organizations to make a difference through online fundraising.
+              Since our establishment in 2020, we&apos;ve been dedicated to
+              providing a platform that enables you to supercharge your
+              fundraising efforts and achieve unparalleled success.
               <br />
               <br />
               <br />
@@ -71,9 +71,9 @@ const AboutUs = () => {
               step of the way.
               <br /> <br />
               <strong>Fee-Free Donations:</strong> Say goodbye to high platform
-              fees! LoveGrid's low 4% platform fee ensures that your donors
-              aren't burdened with additional charges during checkout, allowing
-              you to maximize your fundraising potential.
+              fees! LoveGrid&apos;s low 4% platform fee ensures that your donors
+              aren&apos;t burdened with additional charges during checkout,
+              allowing you to maximize your fundraising potential.
               <br /> <br />
               <strong>Extend Your Reach:</strong> Our powerful SEO system
               ensures that your campaigns reach a wider audience, giving you the
@@ -81,13 +81,13 @@ const AboutUs = () => {
               <br /> <br />
               <strong>Crowdfund Anything:</strong> With LoveGrid, you have the
               freedom to raise money for anything that matters to you. Whether
-              it's a personal cause, a community project, or a charitable
-              organization, we're here to support your fundraising goals.
+              it&apos;s a personal cause, a community project, or a charitable
+              organization, we&apos;re here to support your fundraising goals.
               <br /> <br />
               <strong>Fundraising Freedom:</strong> LoveGrid is available
               globally and supports donations in every major currency, giving
               you the flexibility to fundraise from anywhere in the world. Join
-              us at LoveGrid and together, let's create positive change one
+              us at LoveGrid and together, let&apos;s create positive change one
               donation at a time.
             </p>
           </div>
@@ -97,6 +97,4 @@ const AboutUs = () => {
       <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
     </section>
   );
-};
-
-export default AboutUs;
+}

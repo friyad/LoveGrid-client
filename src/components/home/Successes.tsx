@@ -28,7 +28,7 @@ const Successes = () => {
             >
               {[1, 2, 3, 4, 5, 6].map((item) => {
                 return (
-                  <CarouselSlide className="">
+                  <CarouselSlide key={item} className="">
                     <SuccessDonationCard />
                   </CarouselSlide>
                 );

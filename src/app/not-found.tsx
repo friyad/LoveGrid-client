@@ -163,8 +163,8 @@ const NotFound = () => {
           </svg>
 
           <p className="mx-auto mb-5 max-w-lg text-sm text-[#636262] sm:text-base md:mb-6 lg:mb-8 font-inter">
-            Oops! This page doesn't exist. Head back to the homepage to explore
-            more.
+            Oops! This page doesn&apos;t exist. Head back to the homepage to
+            explore more.
           </p>
 
           <Link
