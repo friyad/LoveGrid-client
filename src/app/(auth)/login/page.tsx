@@ -3,7 +3,7 @@ import LogInForm from "@/components/auth/LogInForm";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Love Grid - Log In",
+  title: "LoveGrid - Log In",
   description:
     "LoveGrid is an interactive donation platform designed to foster acts of kindness and support within communities.",
 };

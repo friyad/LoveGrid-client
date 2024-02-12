@@ -21,7 +21,7 @@ const daysOne = Days_One({
 });
 
 export const metadata: Metadata = {
-  title: "Love Grid",
+  title: "LoveGrid",
   description:
     "LoveGrid is an interactive donation platform designed to foster acts of kindness and support within communities.",
 };
