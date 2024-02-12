@@ -11,7 +11,7 @@ export interface SignUpInfo {
   profile?: string;
 }
 
-export interface CreateCampaign {
+export interface ICampaign {
   id?: number;
   title: string;
   category: string;

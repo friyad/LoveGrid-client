@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const CreateCampaignValidation = yup.object().shape({
+export const CampaignValidation = yup.object().shape({
   title: yup.string().required("This field is required").trim(),
   category: yup.string().required("This field is required").trim(),
   img: yup.string().required("Please upload a photo"),

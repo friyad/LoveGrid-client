@@ -16,7 +16,7 @@ import CampaignPhotoUpload from "./CampaignPhotoUpload";
 import { categories } from "@/utils/campaigns";
 import { CampaignValidation } from "@/validations/campaignValidations";
 
-const CreateCampaignForm = () => {
+const UpdateCampaignForm = () => {
   const form = useForm<ICampaign>({
     initialValues: {
       title: "",
@@ -35,7 +35,7 @@ const CreateCampaignForm = () => {
     validate: yupResolver(CampaignValidation),
   });
 
-  const handleCreateSubmit = async (data: ICampaign) => {
+  const handleUpdateSubmit = async (data: ICampaign) => {
     console.log(data);
   };
 
@@ -43,7 +43,7 @@ const CreateCampaignForm = () => {
     <div>
       <section className="bg-white">
         <div className="max-w-2xl px-4 py-8 mx-auto lg:py-16">
-          <form onSubmit={form.onSubmit(handleCreateSubmit)}>
+          <form onSubmit={form.onSubmit(handleUpdateSubmit)}>
             <div className="grid gap-4 mb-4 sm:grid-cols-2 sm:gap-6 sm:mb-5">
               <TextInput
                 type="text"
@@ -139,4 +139,4 @@ const CreateCampaignForm = () => {
   );
 };
 
-export default CreateCampaignForm;
+export default UpdateCampaignForm;
