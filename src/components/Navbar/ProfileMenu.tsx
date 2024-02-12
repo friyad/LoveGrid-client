@@ -1,12 +1,14 @@
 import React from "react";
-import { Menu, Button, Text, rem, Avatar } from "@mantine/core";
+import { Menu, Avatar } from "@mantine/core";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 interface ProfileMenuProps {
   user: any;
 }
 
 const ProfileMenu = ({ user }: ProfileMenuProps) => {
+  const router = useRouter();
   return (
     <Menu
       trigger="hover"
@@ -14,7 +16,7 @@ const ProfileMenu = ({ user }: ProfileMenuProps) => {
       position="bottom-end"
       width={200}
       classNames={{
-        dropdown: "rounded-md border-none",
+        dropdown: "rounded-md border-none hidden lg:inline-block",
         item: "py-3 hover:bg-gray-50 font-medium",
         label: "text-xs text-gray-400",
       }}
@@ -28,8 +30,12 @@ const ProfileMenu = ({ user }: ProfileMenuProps) => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item>Profile</Menu.Item>
-        <Menu.Item>Settings</Menu.Item>
+        <Menu.Item onClick={() => router.push("/dashboard/profile")}>
+          Profile
+        </Menu.Item>
+        <Menu.Item onClick={() => router.push("/dashboard/settings")}>
+          Settings
+        </Menu.Item>
 
         <Menu.Divider />
 

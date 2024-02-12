@@ -1,6 +1,6 @@
 "use client";
 
-import { Burger, Button, Drawer } from "@mantine/core";
+import { Burger, Button, Divider, Drawer } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -9,6 +9,9 @@ import { usePathname, useRouter } from "next/navigation";
 import { useDisclosure, useHeadroom, useWindowScroll } from "@mantine/hooks";
 import ProfileMenu from "./ProfileMenu";
 import HideComponentOn from "../HideComponentOn";
+import { dashboardSidebarItems } from "../Dashboard/DashboardSidebar";
+import { signOut } from "next-auth/react";
+import { LogOut } from "lucide-react";
 
 const navItems = [
   {
@@ -41,9 +44,9 @@ const Navbar = ({ season: user }: NavbarProps) => {
 
   const items = navItems.map((item) => {
     return (
-      <Link href={item.href} key={item.id}>
+      <Link href={item.href} key={item.id} onClick={toggle}>
         <li
-          className={`block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
+          className={`block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none text-sm lg:text-base ${
             pathname === item.href ||
             (item.href !== "/" && pathname.startsWith(item.href))
               ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
@@ -69,7 +72,12 @@ const Navbar = ({ season: user }: NavbarProps) => {
                 }
             `}
       >
-        <div className="relative flex flex-wrap self-center items-center gap-4 max-w-screen-mxl mx-auto w-full">
+        <div
+          className={`relative flex flex-wrap self-center items-center gap-4 w-full
+          ${
+            pathname.startsWith("/dashboard") ? "" : "max-w-screen-mxl mx-auto"
+          }`}
+        >
           <Link href="/">
             <Image src={logo} alt="logo" className="w-28" />
           </Link>
@@ -78,32 +86,38 @@ const Navbar = ({ season: user }: NavbarProps) => {
             {items}
           </ul>
 
-          <div className="flex items-center ml-auto gap-8">
-            <div className="hidden lg:flex items-center gap-8">
-              <Link href="/my-donations">
-                <li
-                  className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
-                    pathname === "/my-donations"
-                      ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
-                      : "text-gray-500 bg-gray-50 md:bg-transparent"
-                  }`}
-                >
-                  My Donations
-                </li>
-              </Link>
+          <div className="flex items-center ml-auto">
+            {/* Check if user exist then show My Donations page */}
+            {user && (
+              <div className="hidden lg:flex items-center gap-8 mr-8">
+                <Link href="/dashboard/my-donations">
+                  <li
+                    className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
+                      pathname === "/dashboard/my-donations"
+                        ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
+                        : "text-gray-500 bg-gray-50 md:bg-transparent"
+                    }`}
+                  >
+                    My Donations
+                  </li>
+                </Link>
 
-              <Link href="/statistics">
-                <li
-                  className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
-                    pathname === "/statistics"
-                      ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
-                      : "text-gray-500 bg-gray-50 md:bg-transparent"
-                  }`}
-                >
-                  Statistics
-                </li>
-              </Link>
-            </div>
+                {/* Check if this user is an admin show Statatistics page otherwise not */}
+                {user.role.includes("admin") && (
+                  <Link href="/dashboard/statistics">
+                    <li
+                      className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
+                        pathname === "/dashboard/statistics"
+                          ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
+                          : "text-gray-500 bg-gray-50 md:bg-transparent"
+                      }`}
+                    >
+                      Statistics
+                    </li>
+                  </Link>
+                )}
+              </div>
+            )}
 
             {user ? (
               <div className="hidden lg:inline-block">
@@ -115,7 +129,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
                   onClick={() => router.push("/login")}
                   variant="outline"
                   size="md"
-                  className="rounded-md px-6 hidden lg:inline-block"
+                  className="rounded-md px-6 hidden lg:inline-block mr-3"
                   color="green"
                   classNames={{ root: "bg-transparent hover:bg-transparent" }}
                 >
@@ -146,45 +160,55 @@ const Navbar = ({ season: user }: NavbarProps) => {
         opened={opened}
         onClose={toggle}
         title="LoveGrid"
-        classNames={{ root: "lg:hidden" }}
+        classNames={{
+          root: "lg:hidden",
+          title: "text-xl font-daysOne text-cusGreen",
+        }}
       >
-        <div className="grid gap-3">
+        <div className="grid gap-2">
+          {/* Show profile avatar if user exist */}
           {user && (
-            <div className="grid gap-2">
-              <ProfileMenu user={user} />
-              <h4 className="font-bold text-base">Hello 👋🏻, {user?.name}</h4>
-            </div>
+            <>
+              <div className="grid gap-2">
+                <ProfileMenu user={user} />
+                <h4 className="font-bold text-base">Hello 👋🏻, {user?.name}</h4>
+              </div>
+              <Divider className="my-2" />
+            </>
           )}
 
-          <div className="grid gap-3 md:hidden mt-2">{items}</div>
+          <div className="grid gap-2 md:hidden">
+            {items}
+            <Divider className="my-2" />
+          </div>
 
-          <>
-            <Link href="/my-donations">
-              <li
-                className={`inline-block font-semibold transition-all font-inter py-3 px-4 rounded-md w-full ${
-                  pathname === "/my-donations"
-                    ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200"
-                    : "text-gray-500 bg-gray-50"
-                }`}
-              >
-                My Donations
-              </li>
-            </Link>
+          {/* Show dashboard items if user exist */}
+          {user &&
+            dashboardSidebarItems.map((item) => {
+              // check if this user not an admin then don't show statistics page
+              if (
+                !user.role.includes("admin") &&
+                item.href === "/dashboard/statistics"
+              ) {
+                return;
+              }
+              return (
+                <Link href={item.href} key={item.id}>
+                  <li
+                    className={`inline-block text-sm font-semibold transition-all font-inter py-3 px-4 rounded-md w-full ${
+                      pathname === item.href
+                        ? "text-cusGreen font-bold bg-cusGreen-200"
+                        : "text-gray-500 bg-gray-50"
+                    }`}
+                  >
+                    {item.name}
+                  </li>
+                </Link>
+              );
+            })}
 
-            <Link href="/statistics">
-              <li
-                className={`inline-block font-semibold transition-all font-inter py-3 px-4 rounded-md w-full ${
-                  pathname === "/statistics"
-                    ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200"
-                    : "text-gray-500 bg-gray-50"
-                }`}
-              >
-                Statistics
-              </li>
-            </Link>
-          </>
-
-          {!user && (
+          {/* Show Log In and Sign Up button if user doesn't exist */}
+          {!user ? (
             <>
               <Button
                 onClick={() => router.push("/login")}
@@ -193,7 +217,9 @@ const Navbar = ({ season: user }: NavbarProps) => {
                 fullWidth
                 className="rounded-md"
                 color="green"
-                classNames={{ root: "bg-transparent hover:bg-transparent" }}
+                classNames={{
+                  root: "bg-transparent hover:bg-transparent mt-16",
+                }}
               >
                 Log In
               </Button>
@@ -206,6 +232,14 @@ const Navbar = ({ season: user }: NavbarProps) => {
                 Sign Up
               </Button>
             </>
+          ) : (
+            <button
+              onClick={() => signOut({ callbackUrl: "/" })}
+              className="font-inter py-3 px-6 rounded-md w-full text-left flex justify-start items-center gap-3 bg-red-100 text-red-500 font-semibold mt-16 text-sm"
+            >
+              <LogOut className="size-4" strokeWidth="2" />
+              Log Out
+            </button>
           )}
         </div>
       </Drawer>
