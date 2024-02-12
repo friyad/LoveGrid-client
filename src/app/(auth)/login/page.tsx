@@ -16,7 +16,7 @@ const LogInPage = () => {
           Sign in
         </h3>
         <p className="text-sm mt-4 font-inter">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link
             href="/signup"
             className="text-cusBlue font-semibold hover:underline ml-1 whitespace-nowrap"

@@ -65,7 +65,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
         className={`py-4 px-6 sm:px-10 grid z-50 min-h-[90px]
                 ${
                   scroll.y <= 765
-                    ? "relative -translate-y-0 border-none bg-transparent items-start pt-6"
+                    ? "relative -translate-y-0 border-none bg-transparent items-start"
                     : !pinned
                     ? "-translate-y-full bg-white/80 backdrop-blur-xl"
                     : "sticky top-0 bg-white/80 backdrop-blur-xl -translate-y-0 transition-all duration-500 border-b"
@@ -74,7 +74,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
       >
         <div className="relative flex flex-wrap self-center items-center gap-4 max-w-screen-mxl mx-auto w-full">
           <Link href="/">
-            <Image src={logo} alt="logo" className="w-36" />
+            <Image src={logo} alt="logo" className="w-28" />
           </Link>
 
           <ul className="hidden md:flex ml-12 space-x-6 lg:space-x-8">
@@ -83,7 +83,9 @@ const Navbar = ({ season: user }: NavbarProps) => {
 
           <div className="flex ml-auto gap-3">
             {user ? (
-              <ProfileMenu user={user} />
+              <div className="hidden lg:inline-block">
+                <ProfileMenu user={user} />
+              </div>
             ) : (
               <>
                 <Button

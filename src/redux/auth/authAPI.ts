@@ -9,7 +9,7 @@ export const authAPI = api.injectEndpoints({
         url: "/signup",
         body: data,
         method: "POST",
-        cache: "no-cache",
+        // cache: "no-cache",
       }),
       transformErrorResponse: handleAuthErr,
     }),

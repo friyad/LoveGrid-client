@@ -45,6 +45,7 @@ const SignUpForm = () => {
           type="text"
           label="Name"
           size="lg"
+          name="name"
           {...form.getInputProps("name")}
         />
 
@@ -52,6 +53,7 @@ const SignUpForm = () => {
           type="email"
           label="Email"
           size="lg"
+          name="email"
           {...form.getInputProps("email")}
           rightSection={<Mail className="size-5" />}
         />
@@ -60,6 +62,7 @@ const SignUpForm = () => {
           type="email"
           label="Password"
           size="lg"
+          name="password"
           {...form.getInputProps("password")}
           classNames={{ root: "mt-6" }}
         />
@@ -67,6 +70,7 @@ const SignUpForm = () => {
           type="email"
           label="Confirm Password"
           size="lg"
+          name="cPassword"
           {...form.getInputProps("cPassword")}
           classNames={{ root: "mt-6" }}
         />

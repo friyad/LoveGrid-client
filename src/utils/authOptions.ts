@@ -30,15 +30,24 @@ export const authOptions: NextAuthOptions = {
       id: "signup-provider",
       name: "Credentials",
       credentials: {
-        name: { label: "name", type: "text", placeholder: "Type your name..." },
+        name: {
+          name: "name",
+          label: "name",
+          type: "text",
+          placeholder: "Type your name...",
+        },
         email: {
+          name: "email",
           label: "email",
           type: "email",
           placeholder: "Type your email...",
         },
-        password: { label: "Password", type: "password" },
+        password: { name: "password", label: "Password", type: "password" },
       },
+
       async authorize(credentials, req) {
+        console.log(credentials);
+
         try {
           const result: any = await store.dispatch(
             authAPI.endpoints.handleSignUp.initiate(credentials!)
@@ -74,6 +83,7 @@ export const authOptions: NextAuthOptions = {
           const result: any = await store.dispatch(
             authAPI.endpoints.handleLogIn.initiate(credentials!)
           );
+
           if (result.error) {
             throw new Error(JSON.stringify(result?.error?.message));
           } else if (result?.data?.user) {

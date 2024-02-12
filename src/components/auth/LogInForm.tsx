@@ -22,6 +22,8 @@ const LogInForm = () => {
   });
 
   const handleLoginSubmit = async (data: LoginInfo) => {
+    console.log(data);
+
     const res = await signIn("login-provider", {
       ...data,
       redirect: false,
