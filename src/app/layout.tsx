@@ -47,9 +47,11 @@ export default async function RootLayout({
         <ReduxProvider>
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />
-            <Navbar season={season} />
-            {children}
-            <Footer />
+            <main className="flex flex-col justify-between min-h-screen">
+              <Navbar season={season} />
+              {children}
+              <Footer />
+            </main>
           </MantineProvider>
         </ReduxProvider>
       </body>

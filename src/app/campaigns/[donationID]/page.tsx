@@ -23,7 +23,7 @@ interface Props {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
-    title: `LoveGrid | Donations - ${params.donationID}`,
+    title: `LoveGrid | Campaigns - ${params.donationID}`,
     description: `Explore the impact of compassion with LoveGrid's donation campaign. Dive into the details of ${params.donationID} and see how your contribution can make a difference.`,
   };
 }
@@ -49,8 +49,10 @@ const DonationDetailsPage = ({ params }: Props) => {
 
           <div className="bg-white rounded-xl border-2 sm:col-span-3 lg:col-span-3 text-center p-5 flex flex-col justify-between">
             <div>
-              <h1 className="text-cusGreen">$365,577</h1>
-              <p className="text-2xs xl:text-sm 2xl:text-base mt-2 font-inter font-medium">
+              <h1 className="text-xl lg:text-2xl mxl:text-3xl 2xl:text-4xl font-daysOne text-cusGreen">
+                $365,577
+              </h1>
+              <p className="text-2xs xl:text-xs 2xl:text-sm mt-2 font-inter font-medium">
                 raised of{" "}
                 <span className="text-cusGreen font-daysOne">$500,000.00</span>{" "}
                 goal
