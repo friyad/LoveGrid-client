@@ -6,16 +6,13 @@ import { useDropzone } from "react-dropzone";
 import { useUploadPhotoMutation } from "@/redux/uploads/uploadAPI";
 import { Button, Skeleton } from "@mantine/core";
 import { UseFormReturnType } from "@mantine/form";
-import { CreateCampaign } from "@/types/authTypes";
+import { ICampaign } from "@/types/authTypes";
 import { failedNotify } from "@/utils/notificationsManager";
 import { X } from "lucide-react";
 import Image from "next/image";
 
 interface PhonePhotoUploadProps {
-  form: UseFormReturnType<
-    CreateCampaign,
-    (values: CreateCampaign) => CreateCampaign
-  >;
+  form: UseFormReturnType<ICampaign, (values: ICampaign) => ICampaign>;
   images?: string;
 }
 

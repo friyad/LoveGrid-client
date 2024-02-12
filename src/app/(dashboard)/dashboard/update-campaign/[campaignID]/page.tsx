@@ -6,12 +6,15 @@ import { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "LoveGrid - Add Campaign",
+  title: "LoveGrid - Update Campaign",
   description:
     "LoveGrid is an interactive donation platform designed to foster acts of kindness and support within communities.",
 };
 
-const UpdateCampaign = () => {
+const UpdateCampaign = ({ params }: { params: any }) => {
+  const { campaignID } = params;
+  console.log(campaignID);
+
   return (
     <div>
       <div className="flex justify-evenly items-center">

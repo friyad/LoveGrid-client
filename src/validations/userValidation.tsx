@@ -56,3 +56,12 @@ export const SignUpValidation = yup.object().shape({
       "Confirm Password must match with Password"
     ),
 });
+
+export const MakeAdminValidation = yup.object().shape({
+  email: yup
+    .string()
+    .required("Please type your Email")
+    .email("Invalid Email")
+    .matches(/^\S*$/, "Whitespace is not allowed")
+    .lowercase(),
+});
