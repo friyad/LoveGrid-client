@@ -34,4 +34,4 @@ export const authAPI = api.injectEndpoints({
   }),
 });
 
-export const {} = authAPI;
+export const { useHandleLogInMutation, useHandleSignUpMutation } = authAPI;

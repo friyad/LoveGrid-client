@@ -29,72 +29,20 @@ export const authOptions: NextAuthOptions = {
     CredentialsProvider({
       id: "signup-provider",
       name: "Credentials",
-      credentials: {
-        name: {
-          name: "name",
-          label: "name",
-          type: "text",
-          placeholder: "Type your name...",
-        },
-        email: {
-          name: "email",
-          label: "email",
-          type: "email",
-          placeholder: "Type your email...",
-        },
-        password: { name: "password", label: "Password", type: "password" },
-      },
-
-      async authorize(credentials, req) {
-        try {
-          const result: any = await store.dispatch(
-            authAPI.endpoints.handleSignUp.initiate(credentials!)
-          );
-
-          if (result.error) {
-            throw new Error(JSON.stringify(result?.error?.message));
-          } else if (result?.data?.user) {
-            return result?.data?.user;
-          } else {
-            throw new Error(
-              JSON.stringify("Something wrong here. Please try again later")
-            );
-          }
-        } catch (error: any) {
-          throw new Error(JSON.stringify(error.message));
-        }
+      credentials: {},
+      async authorize(credentials: any, req) {
+        const { id, name, email, role } = credentials;
+        return { id, name, email, role };
       },
     }),
 
     CredentialsProvider({
       id: "login-provider",
       name: "Credentials",
-      credentials: {
-        email: {
-          label: "email",
-          type: "email",
-          placeholder: "Type your email...",
-        },
-        password: { label: "Password", type: "password" },
-      },
-      async authorize(credentials, req) {
-        try {
-          const result: any = await store.dispatch(
-            authAPI.endpoints.handleLogIn.initiate(credentials!)
-          );
-
-          if (result.error) {
-            throw new Error(JSON.stringify(result?.error?.message));
-          } else if (result?.data?.user) {
-            return result?.data?.user;
-          } else {
-            throw new Error(
-              JSON.stringify("Something wrong here. Please try again later")
-            );
-          }
-        } catch (error: any) {
-          throw new Error(JSON.stringify(error.message));
-        }
+      credentials: {},
+      async authorize(credentials: any, req) {
+        const { id, name, email, role } = credentials;
+        return { id, name, email, role };
       },
     }),
 

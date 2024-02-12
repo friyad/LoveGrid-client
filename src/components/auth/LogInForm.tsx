@@ -1,5 +1,6 @@
 "use client";
 
+import { useHandleLogInMutation } from "@/redux/auth/authAPI";
 import { LoginInfo } from "@/types/authTypes";
 import { failedNotify, successNotify } from "@/utils/notificationsManager";
 import { LogInValidation } from "@/validations/userValidation";
@@ -8,11 +9,10 @@ import { useForm, yupResolver } from "@mantine/form";
 import { Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const LogInForm = () => {
-  const router = useRouter();
+  const [trigger, { isLoading }] = useHandleLogInMutation();
   const form = useForm<LoginInfo>({
     initialValues: {
       email: "",
@@ -22,17 +22,16 @@ const LogInForm = () => {
   });
 
   const handleLoginSubmit = async (data: LoginInfo) => {
-    const res = await signIn("login-provider", {
-      ...data,
-      redirect: false,
-      callbackUrl: "/",
-    });
-    if (res?.ok) {
-      successNotify("Successfull!", "Sign Up Successfull!");
-      router.push("/");
+    const res: any = await trigger(data);
+    if (res?.data?.status) {
+      successNotify("Successfull!", "Log In Successfull!");
+      signIn("login-provider", {
+        ...res.data?.user,
+        callbackUrl: "/",
+      });
     }
     if (res?.error) {
-      failedNotify("Oops!", JSON.parse(res?.error || " "));
+      failedNotify("Oops!", res.error?.message);
     }
   };
 
@@ -67,8 +66,9 @@ const LogInForm = () => {
         fullWidth
         size="lg"
         type="submit"
+        loading={isLoading}
         classNames={{
-          root: "bg-cusGreen hover:bg-cusViolet mt-8",
+          root: "hover:bg-cusViolet mt-8",
         }}
       >
         Sign In

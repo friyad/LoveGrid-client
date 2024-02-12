@@ -1,5 +1,6 @@
 "use client";
 
+import { useHandleSignUpMutation } from "@/redux/auth/authAPI";
 import { SignUpInfo } from "@/types/authTypes";
 import { failedNotify, successNotify } from "@/utils/notificationsManager";
 import { SignUpValidation } from "@/validations/userValidation";
@@ -7,11 +8,10 @@ import { Button, PasswordInput, TextInput } from "@mantine/core";
 import { useForm, yupResolver } from "@mantine/form";
 import { Mail } from "lucide-react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
 import React from "react";
 
 const SignUpForm = () => {
-  const router = useRouter();
+  const [trigger, { isLoading }] = useHandleSignUpMutation();
   const form = useForm<SignUpInfo>({
     initialValues: {
       name: "Test",
@@ -24,16 +24,16 @@ const SignUpForm = () => {
 
   const handleSignUpSubmit = async (data: SignUpInfo) => {
     const { cPassword, ...others } = data;
-    const res = await signIn("signup-provider", {
-      ...others,
-      callbackUrl: "/",
-    });
-    if (res?.ok) {
+    const res: any = await trigger(others);
+    if (res?.data?.status) {
       successNotify("Successfull!", "Sign Up Successfull!");
-      router.push("/");
+      signIn("signup-provider", {
+        ...res.data?.user,
+        callbackUrl: "/",
+      });
     }
     if (res?.error) {
-      failedNotify("Oops!", JSON.parse(res?.error || " "));
+      failedNotify("Oops!", res.error?.message);
     }
   };
 
@@ -79,8 +79,9 @@ const SignUpForm = () => {
         fullWidth
         size="lg"
         type="submit"
+        loading={isLoading}
         classNames={{
-          root: "bg-cusGreen hover:bg-cusViolet mt-8",
+          root: "hover:bg-cusViolet mt-8",
         }}
       >
         Create Account
