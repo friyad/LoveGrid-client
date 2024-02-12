@@ -26,7 +26,6 @@ const SignUpForm = () => {
     const { cPassword, ...others } = data;
     const res = await signIn("signup-provider", {
       ...others,
-      redirect: false,
       callbackUrl: "/",
     });
     if (res?.ok) {

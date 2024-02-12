@@ -1,6 +1,6 @@
 "use client";
 
-import { Avatar, Burger, Button, Drawer } from "@mantine/core";
+import { Burger, Button, Drawer } from "@mantine/core";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -8,6 +8,7 @@ import logo from "@/assets/brand/logo-small.png";
 import { usePathname, useRouter } from "next/navigation";
 import { useDisclosure, useHeadroom, useWindowScroll } from "@mantine/hooks";
 import ProfileMenu from "./ProfileMenu";
+import HideComponentOn from "../HideComponentOn";
 
 const navItems = [
   {
@@ -60,7 +61,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
   });
 
   return (
-    <>
+    <HideComponentOn>
       <header
         className={`py-4 px-6 sm:px-10 grid z-50 min-h-[90px]
                 ${
@@ -162,7 +163,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
           )}
         </div>
       </Drawer>
-    </>
+    </HideComponentOn>
   );
 };
 
