@@ -5,6 +5,9 @@ import theme from "@/utils/mantineTheme";
 import ReduxProvider from "@/redux/ReduxProvider";
 import { Notifications } from "@mantine/notifications";
 import Footer from "@/components/Footer";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/utils/authOptions";
+import Navbar from "@/components/Navbar/Navbar";
 
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -29,13 +32,13 @@ export const metadata: Metadata = {
     "LoveGrid is an interactive donation platform designed to foster acts of kindness and support within communities.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-  navbar,
 }: Readonly<{
   children: React.ReactNode;
-  navbar: React.ReactNode;
 }>) {
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang="en">
       <head>
@@ -46,7 +49,7 @@ export default function RootLayout({
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />
             <main className="flex flex-col justify-between min-h-screen">
-              {navbar}
+              <Navbar session={session} />
               {children}
               <Footer />
             </main>

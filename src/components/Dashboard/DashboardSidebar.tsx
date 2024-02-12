@@ -39,10 +39,10 @@ export const dashboardSidebarItems = [
 ];
 
 interface NavbarProps {
-  season: any;
+  session: any;
 }
 
-const DashboardSidebar = ({ season: user }: NavbarProps) => {
+const DashboardSidebar = ({ session: user }: NavbarProps) => {
   const pathname = usePathname();
 
   return (

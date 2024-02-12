@@ -13,11 +13,11 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const season = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions);
 
   return (
     <main className="">
-      <Hero isAuthenticated={season ? true : false} />
+      <Hero isAuthenticated={session ? true : false} />
       <Donations />
       <Featured />
       <Successes />

@@ -32,10 +32,10 @@ const navItems = [
 ];
 
 interface NavbarProps {
-  season: any;
+  session: any;
 }
 
-const Navbar = ({ season: user }: NavbarProps) => {
+const Navbar = ({ session: user }: NavbarProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const [opened, { toggle }] = useDisclosure(false);
