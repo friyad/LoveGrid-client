@@ -11,6 +11,7 @@ import { getServerSession } from "next-auth";
 
 import "@mantine/core/styles.css";
 import "@mantine/notifications/styles.css";
+import "@mantine/carousel/styles.css";
 import "./globals.css";
 
 const inter = Inter({

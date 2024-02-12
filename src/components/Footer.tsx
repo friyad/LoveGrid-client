@@ -7,12 +7,14 @@ const Footer = ({}: FooterProps) => {
   return (
     <HideComponentOn>
       <footer className="bg-gray-900 font-inter">
-        <div className="py-12 grid sm:grid-cols-2 xl:grid-cols-4 gap-8 max-w-screen-2xl mx-auto">
+        <div className="py-12 grid sm:grid-cols-2 xl:grid-cols-4 gap-8 max-w-screen-2xl mx-auto px-6 2xl:px-4">
           <div>
             <h4 className="text-white text-lg font-bold mb-6">About Us</h4>
             <p className="text-gray-300 text-sm">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-              ultrices ultricies diam id scelerisque.
+              At LoveGrid, we're dedicated to revolutionizing the world of
+              online fundraising. Since our inception in 2020, we've empowered
+              countless individuals and organizations to raise millions in
+              donations, all with our trusted platform and expert support.
             </p>
             <ul className="space-y-4 mt-8">
               <li>
@@ -108,11 +110,6 @@ const Footer = ({}: FooterProps) => {
             <ul className="list-none space-y-4">
               <li>
                 <a href="#" className="hover:text-white text-gray-300 text-sm">
-                  Documentation
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-white text-gray-300 text-sm">
                   Tutorials
                 </a>
               </li>
@@ -143,7 +140,7 @@ const Footer = ({}: FooterProps) => {
                 />
                 <button
                   type="button"
-                  className="bg-gray-500 hover:bg-gray-600 text-white px-4 rounded-r-lg text-sm tracking-wide"
+                  className="bg-cusGreen hover:bg-cusGreen-800 text-white px-4 rounded-r-lg text-sm tracking-wide"
                 >
                   Subscribe
                 </button>

@@ -1,14 +1,14 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { Button, ButtonProps, Loader, createTheme } from "@mantine/core";
+import { Button, ButtonProps, createTheme } from "@mantine/core";
 
 const theme = createTheme({
   components: {
     // Customizing "Button" component with tailwind css
     Button: Button.extend({
       classNames: (_theme, props: ButtonProps | any) => {
-        const btnDefault = "bg-cusViolet font-inter hover:bg-cusGreen";
+        const btnDefault = "bg-cusGreen font-inter";
         switch (props.size) {
           case "lg":
             return {

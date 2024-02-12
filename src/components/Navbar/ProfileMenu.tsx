@@ -14,7 +14,7 @@ const ProfileMenu = ({ user }: ProfileMenuProps) => {
       position="bottom-end"
       width={200}
       classNames={{
-        dropdown: "rounded-xl border-green-100",
+        dropdown: "rounded-md border-none",
         item: "py-3 hover:bg-gray-50 font-medium",
         label: "text-xs text-gray-400",
       }}
@@ -28,8 +28,7 @@ const ProfileMenu = ({ user }: ProfileMenuProps) => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Label>Application</Menu.Label>
-        <Menu.Item>Dashboard</Menu.Item>
+        <Menu.Item>Profile</Menu.Item>
         <Menu.Item>Settings</Menu.Item>
 
         <Menu.Divider />

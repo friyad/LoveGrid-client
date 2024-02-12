@@ -18,16 +18,11 @@ const navItems = [
   },
   {
     id: 2,
-    href: "/donations",
-    name: "Donations",
+    href: "/campaigns",
+    name: "Campaigns",
   },
   {
     id: 3,
-    href: "/statistics",
-    name: "Statistics",
-  },
-  {
-    id: 4,
     href: "/about-us",
     name: "About Us",
   },
@@ -49,7 +44,8 @@ const Navbar = ({ season: user }: NavbarProps) => {
       <Link href={item.href} key={item.id}>
         <li
           className={`block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
-            pathname === item.href
+            pathname === item.href ||
+            (item.href !== "/" && pathname.startsWith(item.href))
               ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
               : "text-gray-500 bg-gray-50 md:bg-transparent"
           }`}
@@ -63,13 +59,13 @@ const Navbar = ({ season: user }: NavbarProps) => {
   return (
     <HideComponentOn>
       <header
-        className={`py-4 px-6 sm:px-10 grid z-50 min-h-[90px]
+        className={`py-4 px-6 sm:px-10 grid z-50 min-h-[90px] bg-white border-b
                 ${
                   scroll.y <= 765
-                    ? "relative -translate-y-0 border-none bg-transparent items-start"
+                    ? "relative -translate-y-0 bg-transparent items-start"
                     : !pinned
                     ? "-translate-y-full bg-white/80 backdrop-blur-xl"
-                    : "sticky top-0 bg-white/80 backdrop-blur-xl -translate-y-0 transition-all duration-500 border-b"
+                    : "sticky top-0 bg-white/80 backdrop-blur-xl -translate-y-0 transition-all duration-500"
                 }
             `}
       >
@@ -82,7 +78,33 @@ const Navbar = ({ season: user }: NavbarProps) => {
             {items}
           </ul>
 
-          <div className="flex ml-auto gap-3">
+          <div className="flex items-center ml-auto gap-8">
+            <div className="hidden lg:flex items-center gap-8">
+              <Link href="/my-donations">
+                <li
+                  className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
+                    pathname === "/my-donations"
+                      ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
+                      : "text-gray-500 bg-gray-50 md:bg-transparent"
+                  }`}
+                >
+                  My Donations
+                </li>
+              </Link>
+
+              <Link href="/statistics">
+                <li
+                  className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
+                    pathname === "/statistics"
+                      ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
+                      : "text-gray-500 bg-gray-50 md:bg-transparent"
+                  }`}
+                >
+                  Statistics
+                </li>
+              </Link>
+            </div>
+
             {user ? (
               <div className="hidden lg:inline-block">
                 <ProfileMenu user={user} />
@@ -103,7 +125,6 @@ const Navbar = ({ season: user }: NavbarProps) => {
                   onClick={() => router.push("/signup")}
                   size="md"
                   className="rounded-md px-6 hidden lg:inline-block"
-                  classNames={{ root: "bg-cusGreen" }}
                 >
                   Sign Up
                 </Button>
@@ -137,6 +158,32 @@ const Navbar = ({ season: user }: NavbarProps) => {
 
           <div className="grid gap-3 md:hidden mt-2">{items}</div>
 
+          <>
+            <Link href="/my-donations">
+              <li
+                className={`inline-block font-semibold transition-all font-inter py-3 px-4 rounded-md w-full ${
+                  pathname === "/my-donations"
+                    ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200"
+                    : "text-gray-500 bg-gray-50"
+                }`}
+              >
+                My Donations
+              </li>
+            </Link>
+
+            <Link href="/statistics">
+              <li
+                className={`inline-block font-semibold transition-all font-inter py-3 px-4 rounded-md w-full ${
+                  pathname === "/statistics"
+                    ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200"
+                    : "text-gray-500 bg-gray-50"
+                }`}
+              >
+                Statistics
+              </li>
+            </Link>
+          </>
+
           {!user && (
             <>
               <Button
@@ -155,7 +202,6 @@ const Navbar = ({ season: user }: NavbarProps) => {
                 size="md"
                 fullWidth
                 className="rounded-md"
-                classNames={{ root: "bg-cusGreen" }}
               >
                 Sign Up
               </Button>

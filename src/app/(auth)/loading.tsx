@@ -1,4 +1,4 @@
-import FullScreenLoader from "@/components/FullScreenLoader";
+import FullScreenLoader from "@/components/ui/FullScreenLoader";
 
 const AuthLoadingPage = () => {
   return (
