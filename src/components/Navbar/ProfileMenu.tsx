@@ -30,12 +30,17 @@ const ProfileMenu = ({ user }: ProfileMenuProps) => {
       </Menu.Target>
 
       <Menu.Dropdown>
-        <Menu.Item onClick={() => router.push("/dashboard/profile")}>
+        <Menu.Item onClick={() => router.push("/user/profile")}>
           Profile
         </Menu.Item>
-        <Menu.Item onClick={() => router.push("/dashboard/settings")}>
+        <Menu.Item onClick={() => router.push("/user/settings")}>
           Settings
         </Menu.Item>
+        {user.role.includes("admin") && (
+          <Menu.Item onClick={() => router.push("/dashboard")}>
+            Dashboard
+          </Menu.Item>
+        )}
 
         <Menu.Divider />
 

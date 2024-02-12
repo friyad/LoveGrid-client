@@ -1,6 +1,12 @@
 "use client";
 
-import { HandCoins, LogOut, Settings, TrendingUp, User } from "lucide-react";
+import {
+  HandCoins,
+  LayoutDashboard,
+  LogOut,
+  Settings,
+  User,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { signOut } from "next-auth/react";
@@ -8,25 +14,25 @@ import { signOut } from "next-auth/react";
 export const dashboardSidebarItems = [
   {
     id: 1,
-    href: "/dashboard/profile",
+    href: "/dashboard",
+    name: "Dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    id: 2,
+    href: "/user/profile",
     name: "Profile",
     icon: User,
   },
   {
-    id: 2,
-    href: "/dashboard/my-donations",
+    id: 3,
+    href: "/user/my-donations",
     name: "My Donations",
     icon: HandCoins,
   },
   {
-    id: 3,
-    href: "/dashboard/statistics",
-    name: "Statistics",
-    icon: TrendingUp,
-  },
-  {
     id: 4,
-    href: "/dashboard/settings",
+    href: "/user/settings",
     name: "Settings",
     icon: Settings,
   },
@@ -39,33 +45,33 @@ interface NavbarProps {
 const DashboardSidebar = ({ season: user }: NavbarProps) => {
   const pathname = usePathname();
 
-  const items = dashboardSidebarItems.map((item) => {
-    // check if this user not an admin then don't show statistics page
-    if (!user.role.includes("admin") && item.href === "/dashboard/statistics") {
-      return;
-    }
-    return (
-      <Link href={item.href} key={item.id}>
-        <button
-          className={`font-semibold font-inter py-4 px-6 rounded-md w-full text-left flex justify-start items-center gap-3 ${
-            pathname === item.href ||
-            (pathname === "/dashboard" && item.href === "/dashboard/profile")
-              ? "bg-cusGreen text-white"
-              : "text-gray-500 hover:bg-gray-100 bg-gray-50"
-          }`}
-        >
-          <item.icon className="size-5" />
-          {item.name}
-        </button>
-      </Link>
-    );
-  });
-
   return (
     <aside className="hidden lg:flex flex-col justify-between w-64 h-[calc(100dvh-90px)] px-5 pb-8 overflow-y-auto bg-white border-r sticky top-0">
       <div className="space-y-3 flex flex-col py-4">
         <p className="text-gray-500 text-sm">Dashboard</p>
-        {items}
+
+        {dashboardSidebarItems.map((item) => {
+          // check if this user not an admin then don't show dashboard page
+          if (!user.role.includes("admin") && item.href === "/dashboard") {
+            return;
+          }
+          return (
+            <Link href={item.href} key={item.id}>
+              <button
+                className={`font-semibold font-inter py-4 px-6 rounded-md w-full text-left flex justify-start items-center gap-3 ${
+                  pathname === item.href ||
+                  (item.href === "/dashboard" &&
+                    pathname.substr(1).startsWith("dashboard"))
+                    ? "bg-cusGreen text-white"
+                    : "text-gray-500 hover:bg-gray-100 bg-gray-50"
+                }`}
+              >
+                <item.icon className="size-5" />
+                {item.name}
+              </button>
+            </Link>
+          );
+        })}
       </div>
 
       <button

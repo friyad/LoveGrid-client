@@ -8,8 +8,8 @@ export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   const publicPaths = ["/login", "/signup"];
-  const userPaths = ["/dashboard"];
-  const adminPaths = ["/dashboard/statistics"];
+  const userPaths = ["/user/"];
+  const adminPaths = ["/dashboard"];
 
   // prevent accessing public pages while logged in
   if (token && isIncluded(publicPaths, pathname)) {
@@ -26,7 +26,7 @@ export async function middleware(request: NextRequest) {
     if (token.role.includes("admin")) {
       return NextResponse.next();
     }
-    return NextResponse.redirect(new URL("/dashboard/profile", request.url));
+    return NextResponse.redirect(new URL("/user/profile", request.url));
   }
 
   // And other routes is accessable in any situation
@@ -39,6 +39,7 @@ export const config = {
     "/login",
     "/signup",
     "/dashboard/:path*",
+    "/user/:path*",
     // "/((?!api|_next/static|_next/image|favicon.ico).*)",
   ],
 };

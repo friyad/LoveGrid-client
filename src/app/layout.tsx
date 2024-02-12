@@ -4,12 +4,11 @@ import { ColorSchemeScript, MantineProvider } from "@mantine/core";
 import theme from "@/utils/mantineTheme";
 import ReduxProvider from "@/redux/ReduxProvider";
 import { Notifications } from "@mantine/notifications";
-import Navbar from "@/components/Navbar/Navbar";
 import Footer from "@/components/Footer";
-import { authOptions } from "@/utils/authOptions";
-import { getServerSession } from "next-auth";
+import NavbarProvider from "@/components/navbar/NavbarProvider";
 
 import "@mantine/core/styles.css";
+import "@mantine/dates/styles.css";
 import "@mantine/notifications/styles.css";
 import "@mantine/carousel/styles.css";
 import "./globals.css";
@@ -31,13 +30,11 @@ export const metadata: Metadata = {
     "LoveGrid is an interactive donation platform designed to foster acts of kindness and support within communities.",
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const season = await getServerSession(authOptions);
-
   return (
     <html lang="en">
       <head>
@@ -48,7 +45,8 @@ export default async function RootLayout({
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />
             <main className="flex flex-col justify-between min-h-screen">
-              <Navbar season={season} />
+              {/* @ts-expect-error Server Component */}
+              <NavbarProvider />
               {children}
               <Footer />
             </main>

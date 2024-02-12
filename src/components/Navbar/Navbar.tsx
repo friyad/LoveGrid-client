@@ -9,7 +9,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useDisclosure, useHeadroom, useWindowScroll } from "@mantine/hooks";
 import ProfileMenu from "./ProfileMenu";
 import HideComponentOn from "../HideComponentOn";
-import { dashboardSidebarItems } from "../Dashboard/DashboardSidebar";
+import { dashboardSidebarItems } from "../dashboard/DashboardSidebar";
 import { signOut } from "next-auth/react";
 import { LogOut } from "lucide-react";
 
@@ -75,7 +75,11 @@ const Navbar = ({ season: user }: NavbarProps) => {
         <div
           className={`relative flex flex-wrap self-center items-center gap-4 w-full
           ${
-            pathname.startsWith("/dashboard") ? "" : "max-w-screen-mxl mx-auto"
+            pathname === "/dashboard" ||
+            pathname.startsWith("/user/") ||
+            pathname.startsWith("/dashboard/")
+              ? ""
+              : "max-w-screen-mxl mx-auto"
           }`}
         >
           <Link href="/">
@@ -90,10 +94,10 @@ const Navbar = ({ season: user }: NavbarProps) => {
             {/* Check if user exist then show My Donations page */}
             {user && (
               <div className="hidden lg:flex items-center gap-8 mr-8">
-                <Link href="/dashboard/my-donations">
+                <Link href="/user/my-donations">
                   <li
                     className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
-                      pathname === "/dashboard/my-donations"
+                      pathname === "/user/my-donations"
                         ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
                         : "text-gray-500 bg-gray-50 md:bg-transparent"
                     }`}
@@ -104,15 +108,15 @@ const Navbar = ({ season: user }: NavbarProps) => {
 
                 {/* Check if this user is an admin show Statatistics page otherwise not */}
                 {user.role.includes("admin") && (
-                  <Link href="/dashboard/statistics">
+                  <Link href="/dashboard">
                     <li
                       className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
-                        pathname === "/dashboard/statistics"
+                        pathname === "/dashboard"
                           ? "md:underline underline-offset-4 text-cusGreen font-bold bg-cusGreen-200 md:bg-transparent"
                           : "text-gray-500 bg-gray-50 md:bg-transparent"
                       }`}
                     >
-                      Statistics
+                      Dashboard
                     </li>
                   </Link>
                 )}
@@ -156,6 +160,7 @@ const Navbar = ({ season: user }: NavbarProps) => {
         </div>
       </header>
 
+      {/* Sidebar for small devices */}
       <Drawer
         opened={opened}
         onClose={toggle}
@@ -185,13 +190,11 @@ const Navbar = ({ season: user }: NavbarProps) => {
           {/* Show dashboard items if user exist */}
           {user &&
             dashboardSidebarItems.map((item) => {
-              // check if this user not an admin then don't show statistics page
-              if (
-                !user.role.includes("admin") &&
-                item.href === "/dashboard/statistics"
-              ) {
+              // check if this user not an admin then don't show dashboard page
+              if (!user.role.includes("admin") && item.href === "/dashboard") {
                 return;
               }
+
               return (
                 <Link href={item.href} key={item.id}>
                   <li

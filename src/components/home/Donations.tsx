@@ -7,17 +7,17 @@ import DonationCard from "../DonationCard";
 const donationsData = [
   {
     id: 1,
-    title: "",
+    title: "", // -----------
     category: "", // ----
     img: "",
-    color: "",
+    color: "", // ----------
     totalDonations: 10,
     tlDonateAmount: 1040,
-    goal: 10000,
-    fundRaiserName: "",
+    goal: 10000, // ----------
+    fundRaiserName: "", // ----------
     fundRaiserPhoto: "",
-    lastDate: "",
-    description: "",
+    lastDate: "", // ----------
+    description: "", // ----------
   },
 ];
 
