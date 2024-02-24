@@ -107,7 +107,7 @@ const Navbar = ({ session: user }: NavbarProps) => {
                 </Link>
 
                 {/* Check if this user is an admin show Statatistics page otherwise not */}
-                {user.role.includes("admin") && (
+                {user?.role?.includes("admin") && (
                   <Link href="/dashboard">
                     <li
                       className={`inline-block font-semibold transition-all font-inter py-3 md:py-0 px-4 md:px-0 rounded-md md:rounded-none ${
@@ -191,7 +191,10 @@ const Navbar = ({ session: user }: NavbarProps) => {
           {user &&
             dashboardSidebarItems.map((item) => {
               // check if this user not an admin then don't show dashboard page
-              if (!user.role.includes("admin") && item.href === "/dashboard") {
+              if (
+                !user?.role?.includes("admin") &&
+                item.href === "/dashboard"
+              ) {
                 return;
               }
 

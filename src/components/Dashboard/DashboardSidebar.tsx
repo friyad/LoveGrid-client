@@ -52,7 +52,7 @@ const DashboardSidebar = ({ session: user }: NavbarProps) => {
 
         {dashboardSidebarItems.map((item) => {
           // check if this user not an admin then don't show dashboard page
-          if (!user.role.includes("admin") && item.href === "/dashboard") {
+          if (!user?.role?.includes("admin") && item.href === "/dashboard") {
             return;
           }
           return (

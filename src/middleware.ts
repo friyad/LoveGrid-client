@@ -22,8 +22,8 @@ export async function middleware(request: NextRequest) {
   }
 
   // prevent accessing admin only pages from user & unauthenticated users
-  if (token && isIncluded(adminPaths, pathname)) {
-    if (token.role.includes("admin")) {
+  if (isIncluded(adminPaths, pathname)) {
+    if (token && token.role.includes("admin")) {
       return NextResponse.next();
     }
     return NextResponse.redirect(new URL("/user/profile", request.url));
