@@ -1,5 +1,5 @@
 export interface ICampaign {
-  id?: number;
+  _id?: number;
   title: string;
   category: string;
   img: string;

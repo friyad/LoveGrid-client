@@ -8,7 +8,7 @@ const theme = createTheme({
     // Customizing "Button" component with tailwind css
     Button: Button.extend({
       classNames: (_theme, props: ButtonProps | any) => {
-        const btnDefault = "bg-cusGreen font-inter";
+        const btnDefault = "bg-cusGreen font-inter disabled:opacity-50";
         switch (props.size) {
           case "lg":
             return {

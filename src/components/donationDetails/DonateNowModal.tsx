@@ -1,18 +1,32 @@
 "use client";
 
+import { ICampaign } from "@/types/campaignTypes";
 import { Button, Modal } from "@mantine/core";
 import { useCounter, useDisclosure } from "@mantine/hooks";
 import React from "react";
+import dayjs from "dayjs";
 
-const DonateNowModal = () => {
+interface DonateNowModalProps {
+  data: ICampaign;
+}
+
+const DonateNowModal = ({ data }: DonateNowModalProps) => {
   const [opened, { open, close }] = useDisclosure(false);
   const [count, handlers] = useCounter(0, { min: 0, max: 1000 });
 
   const handleDonateNow = () => {};
 
+  const isDisable = dayjs(data?.lastDate).isBefore();
+
   return (
     <div>
-      <Button onClick={open} fullWidth size="lg" className="mt-5 sm:mt-0">
+      <Button
+        onClick={open}
+        fullWidth
+        size="lg"
+        disabled={isDisable}
+        className="mt-5 sm:mt-0"
+      >
         Donate Now
       </Button>
 

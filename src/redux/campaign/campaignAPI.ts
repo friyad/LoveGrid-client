@@ -13,6 +13,17 @@ export const campaignAPI = api.injectEndpoints({
       }),
       transformErrorResponse: handleAuthErr,
     }),
+    getCampaigns: builder.query({
+      query: (page: number) => ({
+        url: "/campaigns",
+        params: { page },
+      }),
+    }),
+    getSignleCampaign: builder.query({
+      query: (id: string) => ({
+        url: `/campaign/${id}`,
+      }),
+    }),
   }),
 });
 

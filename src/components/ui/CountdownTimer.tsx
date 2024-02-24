@@ -38,9 +38,7 @@ const renderer = ({ days, hours, minutes, seconds, completed }: Renderer) => {
 };
 
 const Countdown_timer = ({ time }: { time: number }) => {
-  return (
-    <Countdown date={Date.now() + 400000000} renderer={renderer}></Countdown>
-  );
+  return <Countdown date={time} renderer={renderer}></Countdown>;
 };
 
 export default Countdown_timer;
