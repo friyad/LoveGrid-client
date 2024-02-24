@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useForm, yupResolver } from "@mantine/form";
-import { ICampaign } from "@/types/authTypes";
 import {
   Button,
   ColorPicker,
@@ -15,6 +14,7 @@ import { DatePickerInput } from "@mantine/dates";
 import CampaignPhotoUpload from "./CampaignPhotoUpload";
 import { categories } from "@/utils/campaigns";
 import { CampaignValidation } from "@/validations/campaignValidations";
+import { ICampaign } from "@/types/campaignTypes";
 
 const UpdateCampaignForm = () => {
   const form = useForm<ICampaign>({
