@@ -2,7 +2,6 @@
 
 import React from "react";
 import { useForm, yupResolver } from "@mantine/form";
-import { ICampaign } from "@/types/authTypes";
 import {
   Button,
   ColorPicker,
@@ -15,28 +14,45 @@ import { DatePickerInput } from "@mantine/dates";
 import CampaignPhotoUpload from "./CampaignPhotoUpload";
 import { categories } from "@/utils/campaigns";
 import { CampaignValidation } from "@/validations/campaignValidations";
+import { ICampaign } from "@/types/campaignTypes";
+import { useCreateCampaignMutation } from "@/redux/campaign/campaignAPI";
+import dayjs from "dayjs";
+import { failedNotify, successNotify } from "@/utils/notificationsManager";
 
 const CreateCampaignForm = () => {
+  const [createCampaign, result] = useCreateCampaignMutation();
   const form = useForm<ICampaign>({
     initialValues: {
-      title: "",
-      category: "",
-      img: "",
-      blurImg: "",
-      color: "",
-      goal: undefined!,
+      title: "hello",
+      category: "Medical & Healing",
+      img: "https://res.cloudinary.com/dm9civ1x6/image/upload/v1708179616/hzje2tghauaghpkvh3ga.png",
+      blurImg:
+        "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAACXBIWXMAAAsTAAALEwEAmpwYAAAATUlEQVR4nGNgYGBg+H/0v8qPnf+VQWyG/4//8/w/9d/t/4n/bv/P/Rdk2DTtk+TZxf8jb6z87/9zx39xhtDQUKHM1Fyv9LRs59DQUB4Ak8QhbLxyUuYAAAAASUVORK5CYII=",
+      color: "#2A5FFF",
+      goal: 350,
       totalDonations: 0,
       tlDonateAmount: 0,
-      fundRaiserName: "",
+      fundRaiserName: "hello2",
       fundRaiserPhoto: "",
       lastDate: undefined!,
-      description: "",
+      description:
+        "asdfssd asdfsdf asddf asdffasrfasddff sdf asdfdaswrwer qwer",
     },
     validate: yupResolver(CampaignValidation),
   });
 
   const handleCreateSubmit = async (data: ICampaign) => {
-    console.log(data);
+    const { lastDate, ...others } = data;
+    const res: any = await createCampaign({
+      ...others,
+      lastDate: dayjs(lastDate).format("MM-DD-YYYY"),
+    });
+    if (res?.data?.status) {
+      successNotify("Successfull!", "Campaign Created Successfully!");
+    }
+    if (res?.error) {
+      failedNotify("Oops!", res.error?.message);
+    }
   };
 
   return (
@@ -129,7 +145,13 @@ const CreateCampaignForm = () => {
               </div>
             </div>
 
-            <Button fullWidth size="lg" type="submit" className="mt-10">
+            <Button
+              fullWidth
+              size="lg"
+              type="submit"
+              loading={result.isLoading}
+              className="mt-10"
+            >
               Create Now
             </Button>
           </form>
