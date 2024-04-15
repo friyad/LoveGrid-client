@@ -46,9 +46,9 @@ const DashboardSidebar = ({ session: user }: NavbarProps) => {
   const pathname = usePathname();
 
   return (
-    <aside className="hidden lg:flex flex-col justify-between w-64 h-[calc(100dvh-90px)] px-5 pb-8 overflow-y-auto bg-white border-r sticky top-0">
+    <aside className="hidden lg:flex flex-col justify-between w-64 h-[calc(100dvh-90px)] px-5 pb-8 overflow-y-auto bg-cusViolet/5 border-r border-cusViolet/5 sticky top-0">
       <div className="space-y-3 flex flex-col py-4">
-        <p className="text-gray-500 text-sm">Dashboard</p>
+        <p className="text-cusViolet text-sm">Dashboard</p>
 
         {dashboardSidebarItems.map((item) => {
           // check if this user not an admin then don't show dashboard page
@@ -62,8 +62,8 @@ const DashboardSidebar = ({ session: user }: NavbarProps) => {
                   pathname === item.href ||
                   (item.href === "/dashboard" &&
                     pathname.substr(1).startsWith("dashboard"))
-                    ? "bg-cusGreen text-white"
-                    : "text-gray-500 hover:bg-gray-100 bg-gray-50"
+                    ? "bg-cusViolet text-white"
+                    : "text-gray-600 hover:text-cusViolet hover:bg-cusViolet/10 bg-cusViolet/[3%]"
                 }`}
               >
                 <item.icon className="size-5" />

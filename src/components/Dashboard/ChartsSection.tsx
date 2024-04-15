@@ -7,8 +7,8 @@ const ApexChart = dynamic(() => import("react-apexcharts"), { ssr: false });
 const ChartsSection = () => {
   return (
     <div>
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mt-8">
-        <div className="border-2">
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-10 mt-8 min-h-[350px] sm:min-h-[450px] lg:min-h-[350px]">
+        <div className="bg-cusViolet/[5%] rounded-lg">
           <ApexChart
             options={{
               colors: ["#ff9509", "#581796", "#2A5FFF", "#009940", "#00000070"],
@@ -22,7 +22,7 @@ const ChartsSection = () => {
           />
         </div>
 
-        <div className="border-2">
+        <div className="bg-cusViolet/[5%] rounded-lg">
           <ApexChart
             options={{
               colors: ["#009940", "#581796"],

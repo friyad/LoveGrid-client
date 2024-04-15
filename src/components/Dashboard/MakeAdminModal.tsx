@@ -26,7 +26,7 @@ const MakeAdminModal = () => {
 
   return (
     <>
-      <Button onClick={open} size="md" className="w-full xsm:w-fit">
+      <Button onClick={open} size="md" className="w-full xsm:w-fit bg-cusGreen">
         <UserCircle className="size-5" />
         <span className="ml-2">Make Admin</span>
       </Button>

@@ -12,9 +12,8 @@ export default async function DashboardRootLayout({
   return (
     <section className="flex justify-between items-start h-[calc(100vh-90px)] overflow-hidden">
       <DashboardSidebar session={session} />
-      <div className="flex-1 w-full overflow-auto h-full p-8 relative">
+      <div className="flex-1 w-full overflow-auto h-full p-8 relative bg-white">
         {children}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]"></div>
       </div>
     </section>
   );
