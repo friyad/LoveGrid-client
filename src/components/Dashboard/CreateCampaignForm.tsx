@@ -18,9 +18,11 @@ import { ICampaign } from "@/types/campaignTypes";
 import { useCreateCampaignMutation } from "@/redux/campaign/campaignAPI";
 import dayjs from "dayjs";
 import { failedNotify, successNotify } from "@/utils/notificationsManager";
+import { useRouter } from "next/navigation";
 
 const CreateCampaignForm = () => {
   const [createCampaign, result] = useCreateCampaignMutation();
+  const router = useRouter();
   const form = useForm<ICampaign>({
     initialValues: {
       title: "hello",
@@ -49,6 +51,7 @@ const CreateCampaignForm = () => {
     });
     if (res?.data?.status) {
       successNotify("Successfull!", "Campaign Created Successfully!");
+      router.push("/dashboard");
     }
     if (res?.error) {
       failedNotify("Oops!", res.error?.message);
