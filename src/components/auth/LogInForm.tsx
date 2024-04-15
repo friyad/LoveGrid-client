@@ -15,8 +15,8 @@ const LogInForm = () => {
   const [trigger, { isLoading }] = useHandleLogInMutation();
   const form = useForm<LoginInfo>({
     initialValues: {
-      email: "",
-      password: "",
+      email: "test@gmail.com",
+      password: "Test@gmail.com1",
     },
     validate: yupResolver(LogInValidation),
   });

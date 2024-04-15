@@ -14,10 +14,10 @@ const SignUpForm = () => {
   const [trigger, { isLoading }] = useHandleSignUpMutation();
   const form = useForm<SignUpInfo>({
     initialValues: {
-      name: "Test",
-      email: "test@gmail.com",
-      password: "Test@gmail.com1",
-      cPassword: "Test@gmail.com1",
+      name: "",
+      email: "",
+      password: "",
+      cPassword: "",
     },
     validate: yupResolver(SignUpValidation),
   });
