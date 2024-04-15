@@ -19,6 +19,7 @@ import DonateNowModal from "@/components/donationDetails/DonateNowModal";
 import { store } from "@/redux/store";
 import { campaignAPI } from "@/redux/campaign/campaignAPI";
 import { ICampaign } from "@/types/campaignTypes";
+import FailedImgComp from "@/components/FailedImgComp";
 
 interface Props {
   params: { [key: string]: string };
@@ -33,7 +34,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: `LoveGrid | Campaigns - ${data?.title}`,
     description: data?.description,
-    authors: [{ name: data?.fundRaiserName, url: "https://github.com/friyad" }],
+    authors: [{ name: data?.fundRaiserName, url: "https://www.friyad.site" }],
   };
 }
 
@@ -50,10 +51,8 @@ const DonationDetailsPage = async ({ params }: Props) => {
   // show this failed UI
   if (!data)
     return (
-      <section className="min-h-[calc(100vh-90px)] max-w-screen-mxl mx-auto pb-44 px-6 2xl:px-4 flex justify-center items-center">
-        <p className="text-center text-sm mxl:text-base font-inter">
-          Failed to load this campaign
-        </p>
+      <section className="min-h-[calc(100vh-90px)] max-w-screen-mxl mx-auto pb-44 px-6 2xl:px-4 flex justify-center items-center flex-col">
+        <FailedImgComp text="Failed to load this campaign" />
       </section>
     );
 

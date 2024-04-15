@@ -64,7 +64,7 @@ const CampaignItems = () => {
         ) : (
           // if don't have any data in array...
           <div className="sm:col-span-2 lg:col-span-3 xl:col-span-4 py-20 xsm:py-28 xl:py-36">
-            <p className="text-center text-sm mxl:text-base font-inter">
+            <p className="text-center text-sm lg:text-base mxl:text-lg font-inter">
               No data found
             </p>
           </div>
