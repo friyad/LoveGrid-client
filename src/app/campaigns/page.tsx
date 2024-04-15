@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Image from "next/image";
 import React from "react";
 import heroImg from "@/assets/images/campaign-img.jpg";
-import DonationCard from "@/components/DonationCard";
+import CampaignItems from "@/components/campaign/CampaignItems";
 
 export const metadata: Metadata = {
   title: "LoveGrid - Campaigns",
@@ -34,11 +34,7 @@ const DonationsPage = () => {
 
       <div className="relative min-h-screen">
         <div className="max-w-screen-mxl mx-auto pb-28 md:pb-32 2xl:pb-44 px-6 2xl:px-4">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 xl:gap-4 mxl:gap-8 mt-10 max-w-fit sm:max-w-3xl lg:max-w-full mx-auto">
-            {[1, 2, 3, 4, 5, 6, 7, 8].map((item) => {
-              return <DonationCard key={item} />;
-            })}
-          </div>
+          <CampaignItems />
         </div>
         <div className="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]" />
       </div>

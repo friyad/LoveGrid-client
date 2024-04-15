@@ -12,19 +12,26 @@ export const campaignAPI = api.injectEndpoints({
         credentials: "include",
       }),
       transformErrorResponse: handleAuthErr,
+      invalidatesTags: ["campaigns"],
     }),
     getCampaigns: builder.query({
       query: (page: number) => ({
         url: "/campaigns",
         params: { page },
       }),
+      providesTags: ["campaigns"],
     }),
     getSignleCampaign: builder.query({
       query: (id: string) => ({
         url: `/campaign/${id}`,
       }),
+      providesTags: ["campaigns"],
     }),
   }),
 });
 
-export const { useCreateCampaignMutation } = campaignAPI;
+export const {
+  useCreateCampaignMutation,
+  useLazyGetCampaignsQuery,
+  useGetCampaignsQuery,
+} = campaignAPI;
