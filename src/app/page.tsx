@@ -5,6 +5,7 @@ import Successes from "@/components/home/Successes";
 import { authOptions } from "@/utils/authOptions";
 import { Metadata } from "next";
 import { getServerSession } from "next-auth";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "LoveGrid - Home",
@@ -35,12 +36,14 @@ export default async function Home() {
             </p>
           </div>
           <div className="flex max-sm:flex-col justify-center sm:gap-8 gap-4 mt-12">
-            <button
-              type="button"
-              className="min-w-[140px] rounded px-4 py-2.5 text-sm tracking-wider font-semibold outline-none border text-white border-cusGreen bg-cusGreen hover:bg-transparent hover:text-cusGreen transition-all duration-300"
-            >
-              See Running Campaings
-            </button>
+            <Link href="/campaigns">
+              <button
+                type="button"
+                className="min-w-[140px] rounded px-4 py-2.5 text-sm tracking-wider font-semibold outline-none border text-white border-cusGreen bg-cusGreen hover:bg-transparent hover:text-cusGreen transition-all duration-300"
+              >
+                See Running Campaigns
+              </button>
+            </Link>
           </div>
         </div>
       </div>
