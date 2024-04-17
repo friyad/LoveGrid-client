@@ -8,6 +8,7 @@ import Footer from "@/components/Footer";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/utils/authOptions";
 import Navbar from "@/components/Navbar/Navbar";
+import NextTopLoader from "nextjs-toploader";
 
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
@@ -45,6 +46,7 @@ export default async function RootLayout({
         <ColorSchemeScript />
       </head>
       <body className={`${inter.variable} ${daysOne.variable}`}>
+        <NextTopLoader color="#009940" height={5} zIndex={1600} />
         <ReduxProvider>
           <MantineProvider theme={theme}>
             <Notifications position="top-center" />
