@@ -23,13 +23,22 @@ import FailedImgComp from "@/components/FailedImgComp";
 
 interface Props {
   params: { [key: string]: string };
+  searchParams: { [key: string]: string };
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+  searchParams,
+}: Props): Promise<Metadata> {
   // Get campaign data using donation campaign ID and
   // generate metadata based on this campaign data
+  const { donationID } = params;
+  const { type } = searchParams;
   const { data } = await store.dispatch(
-    campaignAPI.endpoints.getSignleCampaign.initiate(params.donationID)
+    campaignAPI.endpoints.getSignleCampaign.initiate({
+      id: donationID,
+      type: type || "campaigns",
+    })
   );
   return {
     title: `LoveGrid | Campaigns - ${data?.title}`,
@@ -38,10 +47,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-const DonationDetailsPage = async ({ params }: Props) => {
+const DonationDetailsPage = async ({ params, searchParams }: Props) => {
   const { donationID } = params;
+  const { type } = searchParams;
   const { data, isSuccess } = await store.dispatch(
-    campaignAPI.endpoints.getSignleCampaign.initiate(donationID)
+    campaignAPI.endpoints.getSignleCampaign.initiate({
+      id: donationID,
+      type: type || "campaigns",
+    })
   );
   const { data: otherCmpData } = await store.dispatch(
     campaignAPI.endpoints.getCampaigns.initiate(1)

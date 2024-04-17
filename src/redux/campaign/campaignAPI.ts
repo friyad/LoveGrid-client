@@ -22,8 +22,11 @@ export const campaignAPI = api.injectEndpoints({
       providesTags: ["campaigns"],
     }),
     getSignleCampaign: builder.query({
-      query: (id: string) => ({
-        url: `/campaign/${id}`,
+      query: (data: { id: string; type: string }) => ({
+        url: `/campaign/${data.id}`,
+        params: {
+          type: data.type,
+        },
       }),
       providesTags: ["campaigns"],
     }),
