@@ -88,34 +88,34 @@ const RunningCampaings = () => {
                 {dashboardCampData.map((item) => (
                   <TableTr key={item._id}>
                     <TableTd classNames={{ td: "max-w-[100px]" }}>
-                      <div className="text-sm xl:xlrnded overflow-idden w-20 mxl:w-24">
+                      <div className="text-sm xl:xlrnded overflow-idden size-20 mxl:size-24">
                         <Image
-                          src="https://readymadeui.com/cardImg.webp"
+                          src={item.img}
                           height={100}
                           width={100}
-                          alt=""
+                          alt={item.title}
                           placeholder="blur"
-                          blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAADCAIAAAA7ljmRAAAACXBIWXMAAAPoAAAD6AG1e1JrAAAAMElEQVR4nGNgkEsyd+669ub/3e//GZrqZivJmPr71Jp55DKwq7owcMmzc6uz8kkBADCKDCknjYFyAAAAAElFTkSuQmCC"
-                          className="w-full"
+                          blurDataURL={item.blurImg}
+                          className="w-full object-cover object-center"
                         />
                       </div>
                     </TableTd>
                     <TableTd>
-                      <p className="px-4 min-w-[200px]">
-                        Winter Storms Relief 2024
-                      </p>
+                      <p className="px-4 min-w-[200px]">{item.title}</p>
                     </TableTd>
-                    <TableTd>Education</TableTd>
-                    <TableTd>${(4546546).toLocaleString()}</TableTd>
-                    <TableTd>${(179).toLocaleString()}</TableTd>
-                    <TableTd>44987</TableTd>
+                    <TableTd>{item.category}</TableTd>
                     <TableTd>
-                      <Link href={`/campaigns/2432`}>
+                      ${(item.tlDonateAmount || 0).toLocaleString()}
+                    </TableTd>
+                    <TableTd>${item.goal.toLocaleString()}</TableTd>
+                    <TableTd>{item.totalDonations}</TableTd>
+                    <TableTd>
+                      <Link href={`/campaigns/${item._id}`}>
                         <Button size="sm">See Details</Button>
                       </Link>
                     </TableTd>
                     <TableTd>
-                      <Link href={`/dashboard/update-campaign/21213412341234`}>
+                      <Link href={`/dashboard/update-campaign/${item._id}`}>
                         <Button size="sm" classNames={{ root: "bg-cusViolet" }}>
                           Update
                         </Button>
