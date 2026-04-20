@@ -65,7 +65,6 @@ LoveGrid is a full-stack donation platform built with Next.js (frontend) and Exp
 | Dashboard         | <img width="1920" height="943" alt="image" src="https://github.com/user-attachments/assets/edfe380f-b635-4916-a1df-80173c096fb9" /> |
 | My Donations      | <img width="1920" height="943" alt="image" src="https://github.com/user-attachments/assets/de83cd17-067d-4bcb-97fb-bbbedbeb87b1" /> |
 | Campaign CRUD     | <img width="1920" height="944" alt="image" src="https://github.com/user-attachments/assets/6fc41024-70db-446e-9dd1-47ffebd26540" /> |
-| Campaign CRUD     | <img width="1920" height="944" alt="image" src="https://github.com/user-attachments/assets/6fc41024-70db-446e-9dd1-47ffebd26540" /> |
 | Authentication    | <img width="1920" height="943" alt="image" src="https://github.com/user-attachments/assets/c0bb9505-e349-4114-ac2e-8e8578dfc3db" /> |
 
 # Getting Started
@@ -183,4 +182,4 @@ Create a `.env.local` file and add the following values:
 ## 🙏 Thank You
 
 Thank you for checking out this project!  
-If you find it helpful or inspiring, consider giving it a ⭐ on GitHub — it really motivates me to keep improving and sharing more projects.
+If you find it helpful or inspiring, consider giving it a ⭐ on GitHub. It really motivates me to keep improving and sharing more projects.
